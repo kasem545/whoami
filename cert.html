@@ -112,159 +112,152 @@
         });
     </script>
 
-<style>
-    /* Certificates Table */
+/* Certificates Table */
+.certificates-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 1em;
+    text-align: left;
+}
+
+.certificates-table th,
+.certificates-table td {
+    border: 1px solid #ddd;
+    padding: 15px;
+}
+
+.certificates-table th {
+    background-color: #282828;
+    color: #00ff00;
+    text-align: center;
+}
+
+.certificates-table td img {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+}
+
+.certificates-table tr:nth-child(even) {
+    background-color: #282828;
+}
+
+.certificates-table tr:hover {
+    background-color: #000;
+}
+
+/* Modal styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    justify-content: center; /* Use flex only when modal is shown */
+    align-items: center;
+}
+
+.modal-content {
+    max-width: 90%;
+    max-height: 90%;
+    border: 2px solid #00ff00;
+    box-shadow: 0 4px 8px rgba(0, 255, 0, 0.2);
+}
+
+#caption {
+    text-align: center;
+    color: #ccc;
+    padding: 10px 20px;
+    font-size: 1em;
+}
+
+.close {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Responsive Design for Smaller Screens */
+@media (max-width: 768px) {
     .certificates-table {
-        width: 100%;
-        border-collapse: collapse;
-        margin: 20px 0;
-        font-size: 1em;
-        text-align: left;
+        font-size: 0.9em;
     }
 
     .certificates-table th,
     .certificates-table td {
-        border: 1px solid #ddd;
-        padding: 15px;
-    }
-
-    .certificates-table th {
-        background-color: #282828;
-        color: #00ff00;
-        text-align: center;
+        padding: 10px;
     }
 
     .certificates-table td img {
-        display: block;
-        margin: 0 auto;
-        max-width: 100%;
-        height: auto;
-    }
-
-    .certificates-table tr:nth-child(even) {
-        background-color: #282828;
-    }
-
-    .certificates-table tr:hover {
-        background-color: #000;
-    }
-
-    /* Modal styles */
-    .modal {
-        display: none;
-        position: fixed;
-        z-index: 1000;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.9);
-
-        /* Flexbox for centering */
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .modal-content {
-        max-width: 90%;
-        max-height: 90%;
-        border: 2px solid #00ff00;
-        box-shadow: 0 4px 8px rgba(0, 255, 0, 0.2);
+        width: 60px; /* Adjust image size */
     }
 
     #caption {
+        font-size: 0.9em;
+    }
+
+    .modal-content {
+        max-width: 80%;
+        max-height: 80%;
+    }
+}
+
+@media (max-width: 480px) {
+    .certificates-table {
+        font-size: 0.8em;
+        margin: 0;
+    }
+
+    .certificates-table th,
+    .certificates-table td {
+        padding: 8px;
+    }
+
+    .certificates-table td img {
+        width: 50px; /* Smaller image for mobile */
+    }
+
+    /* Stack table content vertically for small devices */
+    .certificates-table th,
+    .certificates-table td {
+        display: block;
         text-align: center;
-        color: #ccc;
-        padding: 10px 20px;
+    }
+
+    .certificates-table th {
         font-size: 1em;
     }
 
+    #caption {
+        font-size: 0.8em;
+    }
+
+    .modal-content {
+        max-width: 75%;
+        max-height: 75%;
+    }
+
     .close {
-        position: absolute;
-        top: 20px;
-        right: 35px;
-        color: #fff;
-        font-size: 40px;
-        font-weight: bold;
-        cursor: pointer;
+        font-size: 30px; /* Smaller close button for mobile */
     }
+}
 
-    .close:hover,
-    .close:focus {
-        color: #bbb;
-        text-decoration: none;
-        cursor: pointer;
-    }
-
-    /* Responsive Design for Smaller Screens */
-    @media (max-width: 768px) {
-        /* Adjust table and modal content for tablets */
-        .certificates-table {
-            font-size: 0.9em;
-        }
-
-        .certificates-table th,
-        .certificates-table td {
-            padding: 10px;
-        }
-
-        .certificates-table td img {
-            width: 60px; /* Adjust image size */
-        }
-
-        #caption {
-            font-size: 0.9em;
-        }
-
-        .modal-content {
-            max-width: 80%;
-            max-height: 80%;
-        }
-    }
-
-    @media (max-width: 480px) {
-        /* Mobile-specific adjustments */
-        .certificates-table {
-            font-size: 0.8em;
-            margin: 0;
-        }
-
-        .certificates-table th,
-        .certificates-table td {
-            padding: 8px;
-        }
-
-        .certificates-table td img {
-            width: 50px; /* Smaller image for mobile */
-        }
-
-        /* Stack table content vertically for small devices */
-        .certificates-table th,
-        .certificates-table td {
-            display: block;
-            text-align: center;
-        }
-
-        .certificates-table th {
-            text-align: center;
-            font-size: 1em;
-        }
-
-        #caption {
-            font-size: 0.8em;
-        }
-
-        .modal-content {
-            max-width: 75%;
-            max-height: 75%;
-        }
-
-        .close {
-            font-size: 30px; /* Smaller close button for mobile */
-        }
-    }
-</style>
 
 
 </body>
