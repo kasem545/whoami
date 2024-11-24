@@ -23,56 +23,244 @@
     <main>
         <section id="achievements" class="achievements">
             <h1>Achievements & Certificates</h1>
-            <div class="achievements-grid">
-                <!-- Certificate 1 -->
-                <div class="achievement-item">
-                    <img src="imgs/certificates/ceh.png" alt="Certified Ethical Hacker (CEH)">
-                    <h3>Certified Ethical Hacker (CEH)</h3>
-                    <p>Credentialed as a CEH, showcasing skills in identifying vulnerabilities and securing systems.</p>
-                </div>
-
-                <!-- Certificate 2 -->
-                <div class="achievement-item">
-                    <img src="imgs/certificates/pnpt.png" alt="Practical Network Penetration Tester (PNPT)">
-                    <h3>Practical Network Penetration Tester (PNPT)</h3>
-                    <p>Demonstrates proficiency in advanced penetration testing and reporting methodologies.</p>
-                </div>
-
-                <!-- Certificate 3 -->
-                <div class="achievement-item">
-                    <img src="imgs/certificates/ejpt.png" alt="eLearnSecurity Junior Penetration Tester (eJPT)">
-                    <h3>eLearnSecurity Junior Penetration Tester (eJPT)</h3>
-                    <p>Recognized for foundational penetration testing knowledge and practical application.</p>
-                </div>
-
-                <!-- Certificate 4 -->
-                <div class="achievement-item">
-                    <img src="imgs/certificates/linux-essentials.png" alt="Linux Essentials Certification">
-                    <h3>Linux Essentials</h3>
-                    <p>Certified in Linux fundamentals, essential for system administration and scripting.</p>
-                </div>
-
-                <!-- Certificate 5 -->
-                <div class="achievement-item">
-                    <img src="imgs/certificates/pcep.png" alt="Python Certified Entry-Level Programmer (PCEP)">
-                    <h3>Python Certified Entry-Level Programmer (PCEP)</h3>
-                    <p>Certified in Python programming basics, emphasizing logic building and problem-solving.</p>
-                </div>
-
-                <!-- Certificate 6 -->
-                <div class="achievement-item">
-                    <img src="imgs/certificates/ewpt.png" alt="eLearnSecurity Web Application Penetration Tester (eWPT)">
-                    <h3>eLearnSecurity Web Application Penetration Tester (eWPT)</h3>
-                    <p>Proficient in identifying and exploiting vulnerabilities in web applications.</p>
-                </div>
-            </div>
+            <table class="certificates-table">
+                <thead>
+                    <tr>
+                        <th>Certificate Name</th>
+                        <th>Certificate Description</th>
+                        <th>Certificate Image</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Linux Essentials</td>
+                        <td>Certified in Linux fundamentals, essential for system administration and scripting.</td>
+                        <td><img src="imgs/certificates/lpi.png" alt="Linux Essentials" class="zoomable" height="80px"></td>
+                    </tr>
+                    <tr>
+                        <td>Python Certified Entry-Level Programmer (PCEP)</td>
+                        <td>Certified in Python programming basics, emphasizing logic building and problem-solving.</td>
+                        <td><img src="imgs/certificates/pcep.png" alt="PCEP" class="zoomable" height="80px"></td>
+                    </tr>
+                    <tr>
+                        <td>eLearnSecurity Junior Penetration Tester (eJPT)</td>
+                        <td>Recognized for foundational penetration testing knowledge and practical application.</td>
+                        <td><img src="imgs/certificates/ejpt.png" alt="eJPT" class="zoomable" height="80px"></td>
+                    </tr>
+                    <tr>
+                        <td>Certified Ethical Hacker (CEH)</td>
+                        <td>Credentialed as a CEH, showcasing skills in identifying vulnerabilities and securing systems.</td>
+                        <td><img src="imgs/certificates/ceh.png" alt="CEH" class="zoomable" height="80px"></td>
+                    </tr>
+                    <tr>
+                        <td>Practical Network Penetration Tester (PNPT)</td>
+                        <td>Demonstrates proficiency in advanced penetration testing and reporting methodologies.</td>
+                        <td><img src="imgs/certificates/pnpt.png" alt="PNPT" class="zoomable" height="80px"></td>
+                    </tr>
+                    <tr>
+                        <td>eLearnSecurity Web Application Penetration Tester (eWPT)</td>
+                        <td>Proficient in identifying and exploiting vulnerabilities in web applications.</td>
+                        <td><img src="imgs/certificates/ewpt.png" alt="eWPT" class="zoomable" height="80px"></td>
+                    </tr>
+                </tbody>
+            </table>
         </section>
     </main>
+
+    <!-- Modal for Image Zoom -->
+    <div id="modal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="modal-image">
+        <div id="caption"></div>
+    </div>
 
     <footer>
         <p>&copy; 2024 Kasem Shibli. All rights reserved.</p>
     </footer>
 
-    <script src="main.js"></script>
+    <script>
+        // Modal elements
+        const modal = document.getElementById("modal");
+        const modalImg = document.getElementById("modal-image");
+        const captionText = document.getElementById("caption");
+        const closeBtn = document.querySelector(".close");
+    
+        // Add click event to all zoomable images
+        document.querySelectorAll(".zoomable").forEach((img) => {
+            img.addEventListener("click", () => {
+                modal.style.display = "flex"; // Use Flexbox centering
+                modalImg.src = img.src;
+                captionText.textContent = img.alt;
+            });
+        });
+    
+        // Close modal on close button click
+        closeBtn.addEventListener("click", () => {
+            modal.style.display = "none";
+        });
+    
+        // Close modal on outside click
+        modal.addEventListener("click", (event) => {
+            if (event.target === modal) {
+                modal.style.display = "none";
+            }
+        });
+    </script>
+
+<style>
+    /* Certificates Table */
+    .certificates-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        font-size: 1em;
+        text-align: left;
+    }
+
+    .certificates-table th,
+    .certificates-table td {
+        border: 1px solid #ddd;
+        padding: 15px;
+    }
+
+    .certificates-table th {
+        background-color: #282828;
+        color: #00ff00;
+        text-align: center;
+    }
+
+    .certificates-table td img {
+        display: block;
+        margin: 0 auto;
+        max-width: 100%;
+        height: auto;
+    }
+
+    .certificates-table tr:nth-child(even) {
+        background-color: #282828;
+    }
+
+    .certificates-table tr:hover {
+        background-color: #000;
+    }
+
+    /* Modal styles */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.9);
+
+        /* Flexbox for centering */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .modal-content {
+        max-width: 90%;
+        max-height: 90%;
+        border: 2px solid #00ff00;
+        box-shadow: 0 4px 8px rgba(0, 255, 0, 0.2);
+    }
+
+    #caption {
+        text-align: center;
+        color: #ccc;
+        padding: 10px 20px;
+        font-size: 1em;
+    }
+
+    .close {
+        position: absolute;
+        top: 20px;
+        right: 35px;
+        color: #fff;
+        font-size: 40px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: #bbb;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    /* Responsive Design for Smaller Screens */
+    @media (max-width: 768px) {
+        /* Adjust table and modal content for tablets */
+        .certificates-table {
+            font-size: 0.9em;
+        }
+
+        .certificates-table th,
+        .certificates-table td {
+            padding: 10px;
+        }
+
+        .certificates-table td img {
+            width: 60px; /* Adjust image size */
+        }
+
+        #caption {
+            font-size: 0.9em;
+        }
+
+        .modal-content {
+            max-width: 80%;
+            max-height: 80%;
+        }
+    }
+
+    @media (max-width: 480px) {
+        /* Mobile-specific adjustments */
+        .certificates-table {
+            font-size: 0.8em;
+            margin: 0;
+        }
+
+        .certificates-table th,
+        .certificates-table td {
+            padding: 8px;
+        }
+
+        .certificates-table td img {
+            width: 50px; /* Smaller image for mobile */
+        }
+
+        /* Stack table content vertically for small devices */
+        .certificates-table th,
+        .certificates-table td {
+            display: block;
+            text-align: center;
+        }
+
+        .certificates-table th {
+            text-align: center;
+            font-size: 1em;
+        }
+
+        #caption {
+            font-size: 0.8em;
+        }
+
+        .modal-content {
+            max-width: 75%;
+            max-height: 75%;
+        }
+
+        .close {
+            font-size: 30px; /* Smaller close button for mobile */
+        }
+    }
+</style>
+
+
 </body>
 </html>
